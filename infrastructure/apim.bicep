@@ -27,7 +27,6 @@ param skuCount int = 1
 @description('Location for all resources.')
 param location string = resourceGroup().location
 
-
 param apiManagmentLoggingEventHubNamespaceName string
 param apiManagmentLoggingEventHubName string
 param eventHubSku string = 'Standard'
@@ -44,7 +43,6 @@ resource apiManagementService 'Microsoft.ApiManagement/service@2021-08-01' = {
     publisherName: apiManagmentPublisherName
   }
 }
-
 
 resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-11-01' = {
   name: apiManagmentLoggingEventHubNamespaceName
