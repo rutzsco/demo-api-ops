@@ -34,5 +34,5 @@ jobs:
         parameters: 
            apiManagementServiceName=${{ env.apiManagementServiceName }} 
            apiManagmentPublisherEmail=${{ env.apiManagmentPublisherEmail }} 
-           apiManagmentPublisherName=${{ envs.apiManagmentPublisherName }}
+           apiManagmentPublisherName=${{ env.apiManagmentPublisherName }}
         failOnStdErr: false
