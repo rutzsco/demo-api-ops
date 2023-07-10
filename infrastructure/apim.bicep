@@ -7,7 +7,7 @@ param apiManagmentPublisherEmail string
 
 @description('The name of the owner of the service')
 @minLength(1)
-param publisherName string
+param apiManagmentPublisherName string
 
 @description('The pricing tier of this API Management service')
 @allowed([
@@ -36,6 +36,6 @@ resource apiManagementService 'Microsoft.ApiManagement/service@2021-08-01' = {
   }
   properties: {
     publisherEmail: apiManagmentPublisherEmail
-    publisherName: publisherName
+    publisherName: apiManagmentPublisherName
   }
 }
