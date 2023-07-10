@@ -32,7 +32,7 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: infrastructure/apim.bicep
+        template: infrastructure/main.bicep
         parameters: 
            apiManagementServiceName=${{ env.apiManagementServiceName }} 
            apiManagmentPublisherEmail=${{ env.apiManagmentPublisherEmail }} 
