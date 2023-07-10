@@ -55,7 +55,7 @@ resource loggingEventHub 'Microsoft.EventHub/namespaces/eventhubs@2021-11-01' ex
 
 resource eventHubNamespaceName_eventHubName_Send 'Microsoft.EventHub/namespaces/eventhubs/authorizationRules@2021-01-01-preview' = {
   parent: loggingEventHub
-  name: 'ApimSend'
+  name: 'Send'
   properties: {
     rights: [
       'Send'
