@@ -26,4 +26,15 @@ resource eventHub 'Microsoft.EventHub/namespaces/eventhubs@2021-11-01' = {
   }
 }
 
+resource eventHubNamespaceName_eventHubName_ListenSend 'Microsoft.EventHub/namespaces/eventhubs/authorizationRules@2021-01-01-preview' = {
+  parent: eventHub
+  name: 'ListenSend'
+  properties: {
+    rights: [
+      'Listen'
+      'Send'
+    ]
+  }
+}
+
 
