@@ -27,6 +27,9 @@ param skuCount int = 1
 @description('Location for all resources.')
 param location string = resourceGroup().location
 
+param apiManagmentLoggingEventHubNamespaceName string
+param apiManagmentLoggingEventHubName string
+
 resource apiManagementService 'Microsoft.ApiManagement/service@2021-08-01' = {
   name: apiManagementServiceName
   location: location
@@ -39,3 +42,36 @@ resource apiManagementService 'Microsoft.ApiManagement/service@2021-08-01' = {
     publisherName: apiManagmentPublisherName
   }
 }
+
+resource loggingEventHubNamespace 'Microsoft.EventHub/namespaces@2021-11-01' existing = {
+  name: apiManagmentLoggingEventHubNamespaceName
+}
+
+resource loggingEventHub 'Microsoft.EventHub/namespaces/eventhubs@2021-11-01' existing = {
+  name: apiManagmentLoggingEventHubName
+  parent: loggingEventHubNamespace
+}
+
+resource authorizationRule 'Microsoft.EventHub/namespaces/eventhubs/authorizationRules@2021-01-01-preview' = {
+  parent: loggingEventHub
+  name: 'ApimSend'
+  properties: {
+    rights: [
+      'Send'
+    ]
+  }
+}
+
+resource ehLoggerWithConnectionString 'Microsoft.ApiManagement/service/loggers@2022-04-01-preview' = {
+  name: 'AdvancedLogger'
+  parent: apiManagementService
+  properties: {
+    loggerType: 'azureEventHub'
+    description: 'Event hub logger with connection string'
+    credentials: {
+      connectionString: authorizationRule.listKeys().primaryConnectionString
+      name: 'ApimEventHub'
+    }
+  }
+}
+

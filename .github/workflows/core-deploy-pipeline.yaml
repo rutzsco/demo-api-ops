@@ -6,6 +6,8 @@ jobs:
       apiManagementServiceName: 'rutzsco-demo-apiops'
       apiManagmentPublisherEmail: 'scrutz@microsoft.com'
       apiManagmentPublisherName: 'rutzsco'
+      apiManagmentLoggingEventHubNamespaceName: 'rutzsco-demo-apiops'
+      apiManagmentLoggingEventHubName: 'telemetry'
     runs-on: ubuntu-latest
     steps:
 
@@ -35,4 +37,6 @@ jobs:
            apiManagementServiceName=${{ env.apiManagementServiceName }} 
            apiManagmentPublisherEmail=${{ env.apiManagmentPublisherEmail }} 
            apiManagmentPublisherName=${{ env.apiManagmentPublisherName }}
+           apiManagmentLoggingEventHubNamespaceName=${{ env.eventHubNamespaceName }}
+           apiManagmentLoggingEventHubName=${{ env.eventHubName }}
         failOnStdErr: false

@@ -3,11 +3,11 @@ param apiManagementServiceName string
 
 @description('The email address of the owner of the service')
 @minLength(1)
-param publisherEmail string
+param apiManagmentPublisherEmail string
 
 @description('The name of the owner of the service')
 @minLength(1)
-param publisherName string
+param apiManagmentPublisherName string
 
 @description('The pricing tier of this API Management service')
 @allowed([
@@ -15,27 +15,34 @@ param publisherName string
   'Standard'
   'Premium'
 ])
-param sku string = 'Developer'
-
-@description('The instance size of this API Management service.')
-@allowed([
-  1
-  2
-])
-param skuCount int = 1
+param apiManagementSKU string = 'Developer'
 
 @description('Location for all resources.')
 param location string = resourceGroup().location
 
-resource apiManagementService 'Microsoft.ApiManagement/service@2021-08-01' = {
-  name: apiManagementServiceName
-  location: location
-  sku: {
-    name: sku
-    capacity: skuCount
-  }
-  properties: {
-    publisherEmail: publisherEmail
-    publisherName: publisherName
-  }
+param apiManagmentLoggingEventHubNamespaceName string
+param apiManagmentLoggingEventHubName string
+
+// EventHub
+module eh 'eventHub.bicep' = {
+	name: 'eventHub'
+	params: {
+      location: location
+      eventHubNamespaceName: apiManagmentLoggingEventHubNamespaceName
+      eventHubName: apiManagmentLoggingEventHubName
+	}
+}
+
+// APIM - Core Service
+module apim 'apim.bicep' = {
+	name: 'apim'
+	params: {
+      location: location
+      apiManagementServiceName: apiManagementServiceName
+      apiManagmentPublisherEmail: apiManagmentPublisherEmail
+      apiManagmentPublisherName: apiManagmentPublisherName
+      sku: apiManagementSKU
+      apiManagmentLoggingEventHubNamespaceName: apiManagmentLoggingEventHubNamespaceName
+      apiManagmentLoggingEventHubName: apiManagmentLoggingEventHubName
+	}
 }
