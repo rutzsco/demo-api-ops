@@ -18,7 +18,7 @@ jobs:
       with:
         inlineScript: |
           #!/bin/bash
-          ll
+          ls
 
       # Deploy Bicep file
     - name: deploy
