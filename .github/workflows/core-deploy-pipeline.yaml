@@ -37,6 +37,6 @@ jobs:
            apiManagementServiceName=${{ env.apiManagementServiceName }} 
            apiManagmentPublisherEmail=${{ env.apiManagmentPublisherEmail }} 
            apiManagmentPublisherName=${{ env.apiManagmentPublisherName }}
-           apiManagmentLoggingEventHubNamespaceName=${{ env.eventHubNamespaceName }}
-           apiManagmentLoggingEventHubName=${{ env.eventHubName }}
+           apiManagmentLoggingEventHubNamespaceName=${{ env.apiManagmentLoggingEventHubNamespaceName }}
+           apiManagmentLoggingEventHubName=${{ env.apiManagmentLoggingEventHubName }}
         failOnStdErr: false
