@@ -32,7 +32,7 @@ jobs:
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: infrastructure/apim.bicep
         parameters: 
-           apiManagementServiceName=${{ vars.apiManagementServiceName }} 
-           apiManagmentPublisherEmail=${{ vars.apiManagmentPublisherEmail }} 
-           apiManagmentPublisherName=${{ vars.apiManagmentPublisherName }}'
+           apiManagementServiceName=${{ env.apiManagementServiceName }} 
+           apiManagmentPublisherEmail=${{ env.apiManagmentPublisherEmail }} 
+           apiManagmentPublisherName=${{ envs.apiManagmentPublisherName }}
         failOnStdErr: false
