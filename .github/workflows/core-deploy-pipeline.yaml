@@ -31,5 +31,5 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: infrastructure/apim.bicep
-        parameters: 'apiManagementServiceName=${{ vars.apiManagementServiceName }} apiManagmentPublisherEmail=${{ vars.apiManagmentPublisherEmail }} apiManagmentPublisherName=${{ vars.apiManagmentPublisherName }}'
+        parameters: 'apiManagementServiceName=$apiManagementServiceName apiManagmentPublisherEmail=$apiManagmentPublisherEmail apiManagmentPublisherName=$apiManagmentPublisherName'
         failOnStdErr: false
