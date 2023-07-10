@@ -24,16 +24,6 @@ param apiManagmentLoggingEventHubNamespaceName string
 param apiManagmentLoggingEventHubName string
 
 
-// EventHub
-module eh 'eventHub.bicep' = {
-	name: 'eventHub'
-	params: {
-      location: location
-      eventHubNamespaceName: apiManagmentLoggingEventHubNamespaceName
-      eventHubName: apiManagmentLoggingEventHubName
-	}
-}
-
 // APIM - Core Service
 module apim 'apim.bicep' = {
 	name: 'apim'
