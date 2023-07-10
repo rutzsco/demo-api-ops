@@ -23,6 +23,7 @@ param location string = resourceGroup().location
 param apiManagmentLoggingEventHubNamespaceName string
 param apiManagmentLoggingEventHubName string
 
+
 // EventHub
 module eh 'eventHub.bicep' = {
 	name: 'eventHub'
@@ -42,6 +43,7 @@ module apim 'apim.bicep' = {
       apiManagmentPublisherEmail: apiManagmentPublisherEmail
       apiManagmentPublisherName: apiManagmentPublisherName
       sku: apiManagementSKU
-      apiManagmentLoggingEventHubConnectionString: eh.outputs.primaryConnectionString
+      apiManagmentLoggingEventHubNamespaceName: apiManagmentLoggingEventHubNamespaceName
+      apiManagmentLoggingEventHubName: apiManagmentLoggingEventHubName
 }
 }
