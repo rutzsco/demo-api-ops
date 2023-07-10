@@ -2,6 +2,10 @@ on: [push]
 name: Azure ARM v2
 jobs:
   build-and-deploy:
+    env:
+      apiManagementServiceName: 'rutzsco-demo-apiops'
+      apiManagmentPublisherEmail: 'scrutz@microsoft.com'
+      apiManagmentPublisherName: 'rutzsco'
     runs-on: ubuntu-latest
     steps:
 
@@ -27,5 +31,5 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: infrastructure/apim.bicep
-        parameters: 'storagePrefix=mystore storageSKU=Standard_LRS'
+        parameters: 'apiManagementServiceName=${{ vars.apiManagementServiceName }} apiManagmentPublisherEmail=${{ vars.apiManagmentPublisherEmail }} apiManagmentPublisherName=${{ vars.apiManagmentPublisherName }}'
         failOnStdErr: false

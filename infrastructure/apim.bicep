@@ -3,7 +3,7 @@ param apiManagementServiceName string
 
 @description('The email address of the owner of the service')
 @minLength(1)
-param publisherEmail string
+param apiManagmentPublisherEmail string
 
 @description('The name of the owner of the service')
 @minLength(1)
@@ -35,7 +35,7 @@ resource apiManagementService 'Microsoft.ApiManagement/service@2021-08-01' = {
     capacity: skuCount
   }
   properties: {
-    publisherEmail: publisherEmail
+    publisherEmail: apiManagmentPublisherEmail
     publisherName: publisherName
   }
 }
