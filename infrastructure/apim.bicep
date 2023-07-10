@@ -70,7 +70,7 @@ resource ehLoggerWithConnectionString 'Microsoft.ApiManagement/service/loggers@2
     loggerType: 'azureEventHub'
     description: 'Event hub logger with connection string'
     credentials: {
-      connectionString: authorizationRule.listKeys().primaryConnectionString
+      connectionString: eventHubNamespaceName_eventHubName_Send.listKeys().primaryConnectionString
       name: 'ApimEventHub'
     }
   }
