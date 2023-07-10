@@ -42,7 +42,6 @@ module apim 'apim.bicep' = {
       apiManagmentPublisherEmail: apiManagmentPublisherEmail
       apiManagmentPublisherName: apiManagmentPublisherName
       sku: apiManagementSKU
-      apiManagmentLoggingEventHubNamespaceName: apiManagmentLoggingEventHubNamespaceName
-      apiManagmentLoggingEventHubName: apiManagmentLoggingEventHubName
-	}
+      apiManagmentLoggingEventHubConnectionString: eh.outputs.primaryConnectionString
+}
 }

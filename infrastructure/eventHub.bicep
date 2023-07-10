@@ -37,4 +37,5 @@ resource eventHubNamespaceName_eventHubName_ListenSend 'Microsoft.EventHub/names
   }
 }
 
+output primaryConnectionString string = eventHubNamespaceName_eventHubName_ListenSend.listKeys().primaryConnectionString
 
